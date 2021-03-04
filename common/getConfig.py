@@ -8,6 +8,7 @@ from configparser import ConfigParser
 
 
 class Config(ConfigParser):
+    '''继承父类ConfigParser'''
     def __init__(self):
         super().__init__()
         self.conf_file = os.path.join(CONFDIR, 'baseCon.ini')
@@ -31,7 +32,7 @@ class Config(ConfigParser):
 
     def saveData(self,sectionName,key,value):
         """
-            添加配置
+            向已存在的section中添加配置
         :param sectionName:节点名称section
         :param key:option
         :param value:
@@ -40,12 +41,13 @@ class Config(ConfigParser):
         super().set(section=sectionName,option=key,value=value)
         super().write(open(self.conf_file,'w'))
 
+myconf = Config()
 
-if __name__ == '__main__':
-    conf = Config()
-    # print(conf.getAllsection())
-    # print(conf.getOptions('db'))
-    # print(conf.getItems('db'))
-    # print(conf.get('test_data', 'pwd'))
-    conf.saveData('db','newKey','newVlue')
-    print(conf.getItems('db'))
+# if __name__ == '__main__':
+#     conf = Config()
+#     # print(conf.getAllsection())
+#     # print(conf.getOptions('db'))
+#     # print(conf.getItems('db'))
+#     # print(conf.get('test_data', 'pwd'))
+#     conf.saveData('db','newKey','newVlue')
+#     print(conf.getItems('db'))
